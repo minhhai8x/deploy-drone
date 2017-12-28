@@ -1,0 +1,8 @@
+# https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-16-04
+server_setup_ssl: false
+server_ssl_key_path: "/etc/nginx/ssl/drone-ci.key"
+server_ssl_cert_path: "/etc/nginx/ssl/drone-ci.crt"
+
+nginx_drone_server_name: DRONE_SERVER_IP
+# List of users with admin access to the drone, readme more: http://docs.drone.io/user-management/
+drone_admins: DRONE_ADMIN_UNAME

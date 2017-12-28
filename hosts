@@ -1,0 +1,2 @@
+drone ansible_ssh_host=DRONE_SERVER_IP ansible_user=root
+nginx ansible_ssh_host=NGINX_SERVER_IP ansible_user=root
