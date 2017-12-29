@@ -6,7 +6,7 @@ map $http_upgrade $connection_upgrade {
 {% if server_setup_ssl %}
   server {
     listen 80;
-    server_name {{nginx_drone_server_name}};
+    server_name {{nginx_server_name}};
 
     #Rewrite all none ssl requests to ssl.
     return 301 https://$host$request_uri$is_args$args;
@@ -14,7 +14,7 @@ map $http_upgrade $connection_upgrade {
 
   server {
     listen 443;
-    server_name {{nginx_drone_server_name}};
+    server_name {{nginx_server_name}};
     ssl on;
     ssl_certificate {{server_ssl_cert_path}};
     ssl_certificate_key {{server_ssl_key_path}};
@@ -47,7 +47,7 @@ map $http_upgrade $connection_upgrade {
 {% else %}
   server {
       listen 80;
-      server_name {{nginx_drone_server_name}};
+      server_name {{nginx_server_name}};
 
       location / {
           proxy_set_header X-Forwarded-For $remote_addr;

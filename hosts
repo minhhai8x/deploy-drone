@@ -1,2 +1,2 @@
-drone ansible_ssh_host={{drone_server_ip}} ansible_user=root
-nginx ansible_ssh_host={{nginx_server_ip}} ansible_user=root
+drone ansible_ssh_host={{drone_server_ip}} ansible_user=ubuntu
+nginx ansible_ssh_host={{nginx_server_ip}} ansible_user=ubuntu
