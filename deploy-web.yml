@@ -1,0 +1,17 @@
+---
+- name: Deploy web base on Laravel framework
+  hosts: nginx
+  become: true
+  become_user: root
+  gather_facts: False
+  vars_files:
+    - "vars/main.yml"
+  tasks:
+    - name: Pull sources from the repository.
+      git: repo={{git_project_repo}} dest={{git_project_root}} version={{git_project_branch}}
+      notify:
+        - restart nginx
+
+    handlers:
+      - name: restart nginx
+        service: name=nginx state=restarted

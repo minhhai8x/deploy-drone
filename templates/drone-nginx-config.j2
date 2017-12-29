@@ -6,14 +6,31 @@ map $http_upgrade $connection_upgrade {
 {% if server_setup_ssl %}
   server {
     listen 80;
+    root {{git_project_public_root}};
+
+    # Add index.php to the list if you are using PHP
+    index index.php index.html index.htm;
     server_name {{nginx_server_name}};
 
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+      
     #Rewrite all none ssl requests to ssl.
     return 301 https://$host$request_uri$is_args$args;
   }
 
   server {
     listen 443;
+    root {{git_project_public_root}};
+
+    # Add index.php to the list if you are using PHP
+    index index.php index.html index.htm;
     server_name {{nginx_server_name}};
     ssl on;
     ssl_certificate {{server_ssl_cert_path}};
@@ -30,6 +47,16 @@ map $http_upgrade $connection_upgrade {
         proxy_buffering off;
 
         chunked_transfer_encoding off;
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
     }
 
     location ~* /ws {
@@ -47,6 +74,11 @@ map $http_upgrade $connection_upgrade {
 {% else %}
   server {
       listen 80;
+      root {{git_project_public_root}};
+
+      # Add index.php to the list if you are using PHP
+      index index.php index.html index.htm;
+
       server_name {{nginx_server_name}};
 
       location / {
@@ -60,6 +92,16 @@ map $http_upgrade $connection_upgrade {
           proxy_buffering off;
 
           chunked_transfer_encoding off;
+          try_files $uri $uri/ /index.php?$query_string;
+      }
+
+      location ~ \.php$ {
+          include snippets/fastcgi-php.conf;
+          fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+      }
+
+      location ~ /\.ht {
+          deny all;
       }
 
       location ~* /ws {

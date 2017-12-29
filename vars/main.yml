@@ -9,3 +9,10 @@ nginx_server_name: NGINX_SERVER_IP
 
 # List of users with admin access to the drone, readme more: http://docs.drone.io/user-management/
 drone_admins: DRONE_ADMIN_UNAME
+
+# GIT
+git_project_name: web_server
+git_project_branch: master
+git_project_root: /var/www/html/web-server
+git_project_public_root: /var/www/html/web-server/public
+git_project_repo: git@github.com:minhhai8x/laravel54.git
