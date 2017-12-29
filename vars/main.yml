@@ -17,3 +17,4 @@ git_project_branch: master
 git_project_root: /var/www/html/web-server
 git_project_public_root: /var/www/html/web-server/public
 git_project_repo: git@github.com:minhhai8x/laravel54.git
+git_ssh_key_file: ~/.ssh/ssh_git_rsa
