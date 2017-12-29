@@ -6,6 +6,7 @@ server_ssl_cert_path: "/etc/nginx/ssl/drone-ci.crt"
 drone_server_ip: DRONE_SERVER_IP
 nginx_server_ip: NGINX_SERVER_IP
 nginx_server_name: NGINX_SERVER_IP
+deploy_user: ubuntu
 
 # List of users with admin access to the drone, readme more: http://docs.drone.io/user-management/
 drone_admins: DRONE_ADMIN_UNAME

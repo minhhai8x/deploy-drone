@@ -7,11 +7,14 @@
   vars_files:
     - "vars/main.yml"
   tasks:
+    - name: Copy private ssh key for git
+      copy: src=/home/{{deploy_user}}/.ssh/ssh_git_rsa dest=~/.ssh/ssh_git_rsa owner=www-data group=www-data mode=0600
+
     - name: Pull sources from the repository.
-      git: repo={{git_project_repo}} dest={{git_project_root}} version={{git_project_branch}}
+      git: repo={{git_project_repo}} dest={{git_project_root}} version={{git_project_branch}} key_file=~/.ssh/ssh_git_rsa.pub
       notify:
         - restart nginx
 
-    handlers:
-      - name: restart nginx
-        service: name=nginx state=restarted
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
