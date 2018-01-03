@@ -41,13 +41,6 @@ services:
       I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
       DRONE_SERVER: ws://drone-server:8000/ws/broker
       DRONE_DEBUG: "true"
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_DB: dbname
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
 networks:
   drone:
     driver: bridge
