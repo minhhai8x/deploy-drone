@@ -16,8 +16,8 @@
       drone_host: http://{{drone_server_ip}}
 
       # Variables below are configuraed using vars/credentials.yml & vars/main.yml
-      # drone_secret:
-      # drone_postgress_user:
-      # drone_postgress_password:
-      # drone_github_client:
-      # drone_github_secret:
+      drone_secret: {{drone_secret}}
+      drone_postgress_user: {{drone_postgress_user}}
+      drone_postgress_password: {{drone_postgress_password}}
+      drone_github_client: {{drone_github_client}}
+      drone_github_secret: {{drone_github_secret}}

@@ -10,6 +10,7 @@
   tasks:
     - name: Pull sources from the repository.
       git: repo={{git_project_repo}} dest={{git_project_root}} version={{git_project_branch}} key_file={{git_ssh_key_file}} accept_hostkey=yes
+      become_user: ubuntu
       notify:
         - restart nginx
 
