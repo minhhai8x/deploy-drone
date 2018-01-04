@@ -24,7 +24,8 @@
 - name: run drone agent
   docker_container:
     name: "agent-{{item.name}}"
-    image: "drone/agent:{{drone_version}}"
+    image: "drone/drone:{{drone_version}}"
+    command: agent
     state: started
     restart_policy: always
     volumes:
