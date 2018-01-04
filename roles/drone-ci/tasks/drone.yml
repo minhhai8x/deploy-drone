@@ -11,10 +11,6 @@
     links:
       - postgres
     env:
-      DRONE_DEBUG: "true"
-      DRONE_DATABASE_DRIVER: postgres
-      DRONE_DATABASE_DATASOURCE: postgres://{{drone_postgress_user}}:{{drone_postgress_password}}@postgres:5432/{{drone_postgress_db}}?sslmode=disable
-      DRONE_ADMIN: "{{drone_admins}}"
       DRONE_HOST: "{{drone_host}}"
       DRONE_OPEN: "true"
       DRONE_GITHUB: "true"
@@ -28,19 +24,15 @@
 - name: run drone agent
   docker_container:
     name: "agent-{{item.name}}"
-    image: "drone/drone:{{drone_version}}"
-    privileged: yes
+    image: "drone/agent:{{drone_version}}"
     state: started
     restart_policy: always
-    depends_on:
-      - drone-server
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     links:
       - drone-server
     env:
       DRONE_SERVER: "ws://drone-server:8000/ws/broker"
-      DRONE_DEBUG: "true"
       DRONE_SECRET: "{{drone_secret}}"
   with_items: "{{drone_agents}}"
   tags:

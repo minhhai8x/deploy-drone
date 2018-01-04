@@ -5,7 +5,7 @@ drone_version: 0.7
 drone_admins: "minhhai8x"
 
 # Name of the docker agent container, you can add more than one agent
-drone_agents: [{name: "Main Agent"}]
+drone_agents: [{name: "Main-Agent"}]
 
 # the url, where drone instance will be publicly available
 # typically you would have nginx in front of Drone CI
